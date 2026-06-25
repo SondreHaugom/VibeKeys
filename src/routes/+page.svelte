@@ -29,36 +29,34 @@ onMount(() => {
 </script>
 
 <div class="main_container">
-    <div class="card">
-        <header>
-            <h1>VibeKeys</h1>
-            <p class="subtitle">Chord progression generator</p>
-        </header>
+    <header>
+        <h1>VibeKeys</h1>
+        <p class="subtitle">Chord progression generator</p>
+    </header>
 
-        <div class="controls">
-            <select class="genres">
-                <option value="r&b">R&B</option>
-                <option value="Pop">Pop</option>
-                <option value="Indie_Pop">Indie Pop</option>
-                <option value="Pop_Rock">Pop Rock</option>
-            </select>
-            <button class="send_btn" type="button">Generer akkord</button>
-        </div>
+    <div class="controls">
+        <select class="genres">
+            <option value="r&b">R&B</option>
+            <option value="Pop">Pop</option>
+            <option value="Indie_Pop">Indie Pop</option>
+            <option value="Pop_Rock">Pop Rock</option>
+        </select>
+        <button class="send_btn" type="button">Generer akkord</button>
+    </div>
 
-        <div class="chord_display">
-            {#if currentChords.length === 0}
-                <p class="placeholder">Velg en sjanger og trykk generer</p>
-            {:else}
-                <div class="chord_row">
-                    {#each currentChords as chord, i}
-                        <div class="chord_card">
-                            <span class="step">{i + 1}</span>
-                            <span class="chord_name">{chord}</span>
-                        </div>
-                    {/each}
-                </div>
-            {/if}
-        </div>
+    <div class="chord_display">
+        {#if currentChords.length === 0}
+            <p class="placeholder">Velg en sjanger og trykk generer</p>
+        {:else}
+            <div class="chord_row">
+                {#each currentChords as chord, i}
+                    <div class="chord_card">
+                        <span class="step">{i + 1}</span>
+                        <span class="chord_name">{chord}</span>
+                    </div>
+                {/each}
+            </div>
+        {/if}
     </div>
 </div>
 
@@ -69,7 +67,8 @@ onMount(() => {
 
     :global(body) {
         margin: 0;
-        background: #F3F4FA;
+        background: #faf9f5;
+        min-height: 100vh;
         font-family: Inter, system-ui, -apple-system, sans-serif;
         -webkit-font-smoothing: antialiased;
     }
@@ -77,164 +76,144 @@ onMount(() => {
     .main_container {
         min-height: 100vh;
         display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 2rem 1rem;
-    }
-
-    .card {
-        background: #ffffff;
-        border-radius: 20px;
-        border: 1px solid #DDDFF0;
-        padding: 2.5rem;
-        width: 100%;
-        max-width: 660px;
-        box-shadow:
-            0 1px 2px rgba(26, 27, 36, 0.05),
-            0 6px 20px rgba(26, 27, 36, 0.04);
+        flex-direction: column;
+        padding: 1rem 2rem;
     }
 
     header {
-        margin-bottom: 2rem;
+        margin-bottom: 3rem;
+        border-bottom: 1px solid #E0E0E0; /* Samme farge som i Figma */
+        width: 100%;
+        margin: 16px 0; /* Juster avstand over/under linjen */
     }
 
     h1 {
-        font-size: 2rem;
+        font-size: 30px;
         font-weight: 700;
-        color: #1A1B24;
+        color: #1A1A1A;
         margin: 0 0 0.3rem 0;
         letter-spacing: -0.04em;
-        text-wrap: balance;
     }
 
     .subtitle {
-        font-size: 0.875rem;
-        color: #7E86A3;
+        font-size: 1rem;
+        color: #6F6F6F;
         margin: 0;
-        letter-spacing: 0.01em;
     }
 
     .controls {
         display: flex;
         gap: 0.75rem;
-        margin-bottom: 1.5rem;
+        margin-bottom: 3rem;
     }
 
     .genres {
-        flex: 1;
-        padding: 0.625rem 1rem;
-        border: 1px solid #DDDFF0;
-        border-radius: 10px;
-        background: #F3F4FA;
-        color: #1A1B24;
-        font-size: 0.875rem;
+        padding: 0.75rem 1.25rem;
+        border: 1px solid #E0E0E0;
+        border-radius: 12px;
+        background: #FFFFFF;
+        color: #1A1A1A;
+        font-size: 0.95rem;
         font-family: inherit;
         appearance: none;
         cursor: pointer;
         outline: none;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
 
     .genres:focus {
-        border-color: #5E60D8;
-        box-shadow: 0 0 0 3px rgba(94, 96, 216, 0.12);
+        border-color: #1ABCFE;
+        box-shadow: 0 0 0 3px rgba(26, 188, 254, 0.15);
     }
 
     .send_btn {
-        padding: 0.625rem 1.5rem;
-        background: #5E60D8;
+        padding: 0.75rem 2rem;
+        background: #b34320;
         color: #ffffff;
         border: none;
-        border-radius: 10px;
-        font-size: 0.875rem;
+        border-radius: 12px;
+        font-size: 0.95rem;
         font-weight: 500;
         font-family: inherit;
         cursor: pointer;
-        white-space: nowrap;
         transition: background 0.12s;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
 
     .send_btn:hover {
-        background: #4C4EB8;
+        background: #e87a30;
     }
 
     .send_btn:active {
-        background: #3E40A0;
+        background: #d06a20;
     }
 
     .chord_display {
-        background: #F3F4FA;
-        border-radius: 14px;
-        border: 1px solid #DDDFF0;
-        min-height: 160px;
+        flex: 1;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 2rem 1.5rem;
+
+        padding-bottom: 200px;
     }
 
     .placeholder {
-        color: #7E86A3;
-        font-size: 0.875rem;
+        color: #6F6F6F;
+        font-size: 1rem;
         margin: 0;
-        text-align: center;
     }
 
     .chord_row {
         display: flex;
-        gap: 0.875rem;
+        gap: 1.5rem;
         flex-wrap: wrap;
         justify-content: center;
     }
 
     .chord_card {
-        background: #ffffff;
-        border: 1px solid #DDDFF0;
-        border-radius: 12px;
-        padding: 1.25rem 1.5rem;
+        background: #FFFFFF;
+        border: 1px solid #E0E0E0;
+        border-radius: 20px;
+        padding: 2.5rem 2rem;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 0.375rem;
-        min-width: 82px;
-        box-shadow: 0 1px 3px rgba(26, 27, 36, 0.06);
+        gap: 0.5rem;
+        min-width: 120px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
 
     .step {
         font-size: 0.7rem;
-        color: #7E86A3;
+        color: #8E8E8E;
         font-weight: 500;
-        letter-spacing: 0.06em;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
     }
 
     .chord_name {
-        font-size: 1.5rem;
-        font-weight: 650;
-        color: #5E60D8;
-        letter-spacing: -0.02em;
+        font-size: 2rem;
+        font-weight: 700;
+        color: #706e6e;
+        letter-spacing: -0.03em;
         line-height: 1;
     }
 
-    @media (max-width: 500px) {
-        .card {
-            padding: 1.5rem;
+    @media (max-width: 600px) {
+        .main_container {
+            padding: 2rem 1.5rem;
         }
 
         h1 {
-            font-size: 1.6rem;
+            font-size: 2rem;
         }
 
         .controls {
             flex-direction: column;
         }
 
-        .send_btn {
-            width: 100%;
-            padding: 0.75rem;
-        }
-
         .chord_name {
-            font-size: 1.25rem;
+            font-size: 1.5rem;
         }
     }
 </style>
