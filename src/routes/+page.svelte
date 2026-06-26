@@ -1,8 +1,11 @@
 <script>
 import { onMount } from "svelte";
 import chords from '$lib/chords.js'
+//const genres = document.querySelector('.genres');
 
 let currentChords = $state([])
+
+
 
 const generateChord = () => {
     const allChords = chords()
@@ -12,13 +15,7 @@ const generateChord = () => {
 
 onMount(() => {
     const send_btn = document.querySelector('.send_btn');
-    const genres = document.querySelector('.genres');
-
-    if (genres) {
-        genres.addEventListener('change', (event) => {
-            console.log('Genre selected:', event.target.value);
-        });
-    }
+    
 
     if (send_btn) {
         send_btn.addEventListener('click', () => {
@@ -35,12 +32,7 @@ onMount(() => {
     </header>
 
     <div class="controls">
-        <select class="genres">
-            <option value="r&b">R&B</option>
-            <option value="Pop">Pop</option>
-            <option value="Indie_Pop">Indie Pop</option>
-            <option value="Pop_Rock">Pop Rock</option>
-        </select>
+
         <button class="send_btn" type="button">Generer akkord</button>
     </div>
 
