@@ -22,9 +22,3 @@ Thumbs.db
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
-
-.npmrc
-jsconfig.json
-package-lock.json
-package.json
-vite.config.js
