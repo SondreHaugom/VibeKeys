@@ -30,34 +30,34 @@ const generateChord = () => {
         <p class="subtitle">Chord progression generator</p>
     </header>
 
-    <div class="controls">
-        <select class="genres" bind:value={selectedGenre}>
-            <option value="Pop">Pop</option>
-            <option value="r&b">R&B</option>
-            <option value="Klassisk">Klassisk</option>
-            <option value="Rock">Rock</option>
-        </select>
-    </div>
-    
+    <div class="canvas_area">
+        <div class="controls">
+            <select class="genres" bind:value={selectedGenre}>
+                <option value="Pop">Pop</option>
+                <option value="r&b">R&B</option>
+                <option value="Klassisk">Klassisk</option>
+                <option value="Rock">Rock</option>
+            </select>
+        </div>
 
-    <div class="controls">
+        <div class="controls">
+            <button class="send_btn" type="button" onclick={generateChord}>Generer akkord</button>
+        </div>
 
-        <button class="send_btn" type="button" onclick={generateChord}>Generer akkord</button>
-    </div>
-
-    <div class="chord_display">
-        {#if currentChords.length === 0}
-            <p class="placeholder">Velg en sjanger og trykk generer</p>
-        {:else}
-            <div class="chord_row">
-                {#each currentChords as chord, i}
-                    <div class="chord_card">
-                        <span class="step">{i + 1}</span>
-                        <span class="chord_name">{chord}</span>
-                    </div>
-                {/each}
-            </div>
-        {/if}
+        <div class="chord_display">
+            {#if currentChords.length === 0}
+                <p class="placeholder">Velg en sjanger og trykk generer</p>
+            {:else}
+                <div class="chord_row">
+                    {#each currentChords as chord, i}
+                        <div class="chord_card">
+                            <span class="step">{i + 1}</span>
+                            <span class="chord_name">{chord}</span>
+                        </div>
+                    {/each}
+                </div>
+            {/if}
+        </div>
     </div>
 </div>
 
@@ -100,6 +100,50 @@ const generateChord = () => {
         font-size: 1rem;
         color: #6F6F6F;
         margin: 0;
+    }
+
+    .canvas_area {
+        flex: 1;
+        margin-top: 1.5rem;
+        border-radius: 20px;
+        background-color: #f0ede5;
+        background-image: radial-gradient(circle, rgba(0, 0, 0, 0.07) 1px, transparent 1px);
+        background-size: 22px 22px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        padding: 2rem;
+        box-shadow:
+            0 2px 1px rgba(0,0,0,0.04),
+            0 4px 8px rgba(0,0,0,0.06),
+            0 12px 32px rgba(0,0,0,0.07),
+            inset 0 1px 0 rgba(255,255,255,0.6);
+    }
+
+    /* Diagonal lysinnfall fra øverst til venstre */
+    .canvas_area::before {
+        content: '';
+        position: absolute;
+        top: -200px;
+        left: -200px;
+        width: 700px;
+        height: 700px;
+        background: radial-gradient(ellipse at top left, rgba(255, 255, 240, 0.45) 0%, transparent 55%);
+        pointer-events: none;
+    }
+
+    /* Varm glow nede til høyre */
+    .canvas_area::after {
+        content: '';
+        position: absolute;
+        bottom: -80px;
+        right: -60px;
+        width: 380px;
+        height: 380px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(179, 67, 32, 0.08) 0%, transparent 65%);
+        pointer-events: none;
     }
 
     .controls {
@@ -154,8 +198,7 @@ const generateChord = () => {
         display: flex;
         align-items: center;
         justify-content: center;
-
-        padding-bottom: 200px;
+        padding-bottom: 100px;
     }
 
     .placeholder {
