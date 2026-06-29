@@ -142,5 +142,5 @@ export function klassisk() {
         // 7. "Klassisk vals" (elegant)
         ["C", "G7", "F", "C"],
     ]
-    return klassisk
+    return
 }
