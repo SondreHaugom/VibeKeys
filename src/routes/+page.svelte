@@ -1,28 +1,27 @@
 <script>
-import { onMount } from "svelte";
-import chords from '$lib/chords.js'
-//const genres = document.querySelector('.genres');
+import { pop_chords, rock_chords, rhythm_and_Blues_chords, klassisk } from '$lib/chords.js'
 
+
+let selectedGenre = $state("Pop")
 let currentChords = $state([])
 
-
-
 const generateChord = () => {
-    const allChords = chords()
+    let allChords = []
+    if (selectedGenre === "Pop") {
+        allChords = pop_chords()
+    } else if (selectedGenre === "Rock") {
+        allChords = rock_chords()
+    } else if (selectedGenre === "r&b") {
+        allChords = rhythm_and_Blues_chords()
+    } else if (selectedGenre === "Klassisk") {
+        allChords = klassisk()
+    } else {
+        console.log("Her var det tomt!!!")
+    }
+    if (allChords.length === 0) return
     const randomIndex = Math.floor(Math.random() * allChords.length)
     currentChords = allChords[randomIndex]
 }
-
-onMount(() => {
-    const send_btn = document.querySelector('.send_btn');
-    
-
-    if (send_btn) {
-        send_btn.addEventListener('click', () => {
-            generateChord();
-        })
-    }
-});
 </script>
 
 <div class="main_container">
@@ -32,8 +31,18 @@ onMount(() => {
     </header>
 
     <div class="controls">
+        <select class="genres" bind:value={selectedGenre}>
+            <option value="Pop">Pop</option>
+            <option value="r&b">R&B</option>
+            <option value="Klassisk">Klassisk</option>
+            <option value="Rock">Rock</option>
+        </select>
+    </div>
+    
 
-        <button class="send_btn" type="button">Generer akkord</button>
+    <div class="controls">
+
+        <button class="send_btn" type="button" onclick={generateChord}>Generer akkord</button>
     </div>
 
     <div class="chord_display">

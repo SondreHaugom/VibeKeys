@@ -1,4 +1,4 @@
-export default function chords() {
+export function pop_chords() {
     const pop_chords = [
         // 1. Klassisk pop (litt melankolsk)
         ["C", "Em", "F", "G"],
@@ -30,6 +30,36 @@ export default function chords() {
         // 10. "Folk-pop" (jordnær)
         ["C", "G", "Am", "F"],
 
+        // 1. "Nordic folk" (mystisk)
+        ["Am", "C", "G", "Dm"],
+
+        // 2. "French pop" (chanson-inspirert)
+        ["C", "Em", "Am", "D7"],
+
+        // 3. "Japanese city pop" (retro)
+        ["Cmaj7", "Am7", "Fmaj7", "G7"],
+
+        // 4. "Balkan-inspirert" (spennende)
+        ["Am", "G", "F", "E7"],
+
+        // 5. "Ambient" (etereisk)
+        ["C", "Fmaj7", "Am", "Gsus2"],
+
+        // 6. "Lo-fi" (avslappet)
+        ["Cmaj7", "Am7", "Dm7", "G7"],
+
+        // 7. "Dark pop" (mørkere)
+        ["Cm", "Ab", "Eb", "Bb"],
+
+    ];
+    return pop_chords;
+}
+
+
+
+export function rock_chords() {
+    const rock_chords = [
+
         // 1. Klassisk rock (energisk)
         ["E", "A", "B", "C#m"],
 
@@ -54,6 +84,15 @@ export default function chords() {
         // 8. "Shoegaze" (etereisk)
         ["C", "Fmaj7", "Am", "Gsus4"],
 
+    ]
+    return rock_chords
+}
+
+
+
+
+export function rhythm_and_Blues_chords() {
+    const rhythm_and_Blues_chords = [
         // 1. Klassisk R&B (glatt)
         ["Cmaj7", "Am7", "Fmaj7", "G7"],
 
@@ -80,6 +119,13 @@ export default function chords() {
 
         // 2. "Barokk-inspirert" (elegant)
         ["C", "G", "Am", "Em"],
+    ]
+    return rhythm_and_Blues_chords
+}
+
+
+export function klassisk() {
+    const klassisk = [
 
         // 3. "Romantisk piano" (følelsesladet)
         ["Cmaj7", "Am7", "Dm7", "G7"],
@@ -95,27 +141,6 @@ export default function chords() {
 
         // 7. "Klassisk vals" (elegant)
         ["C", "G7", "F", "C"],
-
-        // 1. "Nordic folk" (mystisk)
-        ["Am", "C", "G", "Dm"],
-
-        // 2. "French pop" (chanson-inspirert)
-        ["C", "Em", "Am", "D7"],
-
-        // 3. "Japanese city pop" (retro)
-        ["Cmaj7", "Am7", "Fmaj7", "G7"],
-
-        // 4. "Balkan-inspirert" (spennende)
-        ["Am", "G", "F", "E7"],
-
-        // 5. "Ambient" (etereisk)
-        ["C", "Fmaj7", "Am", "Gsus2"],
-
-        // 6. "Lo-fi" (avslappet)
-        ["Cmaj7", "Am7", "Dm7", "G7"],
-
-        // 7. "Dark pop" (mørkere)
-        ["Cm", "Ab", "Eb", "Bb"],
-    ];
-    return pop_chords;
+    ]
+    return klassisk
 }
