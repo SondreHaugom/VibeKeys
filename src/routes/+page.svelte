@@ -1,26 +1,28 @@
 <script>
-import { pop_chords, rock_chords, rhythm_and_Blues_chords, klassisk } from '$lib/chords.js'
+import { chordsByGenre } from '$lib/chords.js'
 
 
 let selectedGenre = $state("Pop")
 let currentChords = $state([])
+let refrech_btn = $state()
+
+const restartSite = () => {
+    window.location.reload();
+}
+
 
 const generateChord = () => {
-    let allChords = []
-    if (selectedGenre === "Pop") {
-        allChords = pop_chords()
-    } else if (selectedGenre === "Rock") {
-        allChords = rock_chords()
-    } else if (selectedGenre === "r&b") {
-        allChords = rhythm_and_Blues_chords()
-    } else if (selectedGenre === "Klassisk") {
-        allChords = klassisk()
+    const chords = chordsByGenre[selectedGenre] ?? [];
+    if (!chords) {
+        console.log("Her er det feil med imporetringen av akkordene")
     } else {
-        console.log("Her var det tomt!!!")
+        console.log("Alt fungerer")
     }
-    if (allChords.length === 0) return
-    const randomIndex = Math.floor(Math.random() * allChords.length)
-    currentChords = allChords[randomIndex]
+
+
+
+    const randomIndex = Math.floor(Math.random() * chords.length)
+    currentChords = chords[randomIndex]
 }
 </script>
 
@@ -42,6 +44,7 @@ const generateChord = () => {
 
         <div class="controls">
             <button class="send_btn" type="button" onclick={generateChord}>Generer akkord</button>
+            <button class="refrech_btn" type="button" onclick={restartSite}>Start på nytt</button>
         </div>
 
         <div class="chord_display">
@@ -68,7 +71,7 @@ const generateChord = () => {
 
     :global(body) {
         margin: 0;
-        background: #faf9f5;
+        background: #e9e4d8;
         min-height: 100vh;
         font-family: Inter, system-ui, -apple-system, sans-serif;
         -webkit-font-smoothing: antialiased;
@@ -83,7 +86,7 @@ const generateChord = () => {
 
     header {
         margin-bottom: 3rem;
-        border-bottom: 1px solid #E0E0E0; /* Samme farge som i Figma */
+        border-bottom: 1px solid #cfc7b3; /* Samme farge som i Figma, litt mørkere */
         width: 100%;
         margin: 16px 0; /* Juster avstand over/under linjen */
     }
@@ -98,7 +101,7 @@ const generateChord = () => {
 
     .subtitle {
         font-size: 1rem;
-        color: #6F6F6F;
+        color: #63615c;
         margin: 0;
     }
 
@@ -106,8 +109,8 @@ const generateChord = () => {
         flex: 1;
         margin-top: 1.5rem;
         border-radius: 20px;
-        background-color: #f0ede5;
-        background-image: radial-gradient(circle, rgba(0, 0, 0, 0.07) 1px, transparent 1px);
+        background-color: #ddd6c4;
+        background-image: radial-gradient(circle, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
         background-size: 22px 22px;
         position: relative;
         overflow: hidden;
@@ -115,10 +118,10 @@ const generateChord = () => {
         flex-direction: column;
         padding: 2rem;
         box-shadow:
-            0 2px 1px rgba(0,0,0,0.04),
-            0 4px 8px rgba(0,0,0,0.06),
-            0 12px 32px rgba(0,0,0,0.07),
-            inset 0 1px 0 rgba(255,255,255,0.6);
+            0 2px 1px rgba(0,0,0,0.05),
+            0 4px 8px rgba(0,0,0,0.08),
+            0 12px 32px rgba(0,0,0,0.09),
+            inset 0 1px 0 rgba(255,255,255,0.5);
     }
 
     /* Diagonal lysinnfall fra øverst til venstre */
@@ -129,7 +132,7 @@ const generateChord = () => {
         left: -200px;
         width: 700px;
         height: 700px;
-        background: radial-gradient(ellipse at top left, rgba(255, 255, 240, 0.45) 0%, transparent 55%);
+        background: radial-gradient(ellipse at top left, rgba(255, 255, 240, 0.4) 0%, transparent 55%);
         pointer-events: none;
     }
 
@@ -142,7 +145,7 @@ const generateChord = () => {
         width: 380px;
         height: 380px;
         border-radius: 50%;
-        background: radial-gradient(circle, rgba(179, 67, 32, 0.08) 0%, transparent 65%);
+        background: radial-gradient(circle, rgba(179, 67, 32, 0.1) 0%, transparent 65%);
         pointer-events: none;
     }
 
@@ -154,9 +157,9 @@ const generateChord = () => {
 
     .genres {
         padding: 0.75rem 1.25rem;
-        border: 1px solid #E0E0E0;
+        border: 1px solid #cfc7b3;
         border-radius: 12px;
-        background: #FFFFFF;
+        background: #f5f2e9;
         color: #1A1A1A;
         font-size: 0.95rem;
         font-family: inherit;
@@ -173,7 +176,7 @@ const generateChord = () => {
 
     .send_btn {
         padding: 0.75rem 2rem;
-        background: #b34320;
+        background: #a13a1c;
         color: #ffffff;
         border: none;
         border-radius: 12px;
@@ -186,11 +189,33 @@ const generateChord = () => {
     }
 
     .send_btn:hover {
-        background: #e87a30;
+        background: #b34320;
     }
 
     .send_btn:active {
-        background: #d06a20;
+        background: #8f3418;
+    }
+
+    .refrech_btn {
+        padding: 0.75rem 2rem;
+        background: transparent;
+        color: #4a4844;
+        border: 1px solid #cfc7b3;
+        border-radius: 12px;
+        font-size: 0.95rem;
+        font-weight: 500;
+        font-family: inherit;
+        cursor: pointer;
+        transition: background 0.12s, border-color 0.12s;
+    }
+
+    .refrech_btn:hover {
+        background: #f5f2e9;
+        border-color: #b8af98;
+    }
+
+    .refrech_btn:active {
+        background: #e9e4d8;
     }
 
     .chord_display {
@@ -202,7 +227,7 @@ const generateChord = () => {
     }
 
     .placeholder {
-        color: #6F6F6F;
+        color: #63615c;
         font-size: 1rem;
         margin: 0;
     }
@@ -215,8 +240,8 @@ const generateChord = () => {
     }
 
     .chord_card {
-        background: #FFFFFF;
-        border: 1px solid #E0E0E0;
+        background: #f5f2e9;
+        border: 1px solid #cfc7b3;
         border-radius: 20px;
         padding: 2.5rem 2rem;
         display: flex;
@@ -224,12 +249,12 @@ const generateChord = () => {
         align-items: center;
         gap: 0.5rem;
         min-width: 120px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     }
 
     .step {
         font-size: 0.7rem;
-        color: #8E8E8E;
+        color: #7a7770;
         font-weight: 500;
         letter-spacing: 0.08em;
         text-transform: uppercase;
@@ -238,7 +263,7 @@ const generateChord = () => {
     .chord_name {
         font-size: 2rem;
         font-weight: 700;
-        color: #706e6e;
+        color: #4a4844;
         letter-spacing: -0.03em;
         line-height: 1;
     }
