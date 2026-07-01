@@ -1,26 +1,22 @@
 <script>
-import { pop_chords, rock_chords, rhythm_and_Blues_chords, klassisk } from '$lib/chords.js'
+import { chordsByGenre } from '$lib/chords.js'
 
 
 let selectedGenre = $state("Pop")
 let currentChords = $state([])
 
 const generateChord = () => {
-    let allChords = []
-    if (selectedGenre === "Pop") {
-        allChords = pop_chords()
-    } else if (selectedGenre === "Rock") {
-        allChords = rock_chords()
-    } else if (selectedGenre === "r&b") {
-        allChords = rhythm_and_Blues_chords()
-    } else if (selectedGenre === "Klassisk") {
-        allChords = klassisk()
+    const chords = chordsByGenre[selectedGenre] ?? [];
+    if (!chords) {
+        console.log("Her er det feil med imporetringen av akkordene")
     } else {
-        console.log("Her var det tomt!!!")
+        console.log("Alt fungerer")
     }
-    if (allChords.length === 0) return
-    const randomIndex = Math.floor(Math.random() * allChords.length)
-    currentChords = allChords[randomIndex]
+
+
+
+    const randomIndex = Math.floor(Math.random() * chords.length)
+    currentChords = chords[randomIndex]
 }
 </script>
 
