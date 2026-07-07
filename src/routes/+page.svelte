@@ -2,14 +2,31 @@
 import { chordsByGenre } from '$lib/chords.js'
 
 
-let selectedGenre = $state("Pop")
-let currentChords = $state([])
-let refrech_btn = $state()
+let selectedGenre = $state("Pop");
+let currentChords = $state([]);
+let isActive = $state(false);
+
 
 const restartSite = () => {
     window.location.reload();
 }
 
+
+
+const generate = () => {
+    if (isActive) {
+        generateArpegio()
+    } else {
+        generateChord()
+    }
+}
+
+
+
+const generateArpegio = () => {
+    console.log("Her er jeg!!!!")
+    
+}
 
 const generateChord = () => {
     const chords = chordsByGenre[selectedGenre] ?? [];
@@ -40,10 +57,16 @@ const generateChord = () => {
                 <option value="Klassisk">Klassisk</option>
                 <option value="Rock">Rock</option>
             </select>
+            <input class="mode_toggle" type="checkbox" bind:checked={isActive}>
         </div>
 
         <div class="controls">
-            <button class="send_btn" type="button" onclick={generateChord}>Generer akkord</button>
+            
+            <button class="send_btn" type="button" onclick={generate}>Generer</button>
+
+            
+
+
             <button class="refrech_btn" type="button" onclick={restartSite}>Start på nytt</button>
         </div>
 
@@ -174,6 +197,48 @@ const generateChord = () => {
         box-shadow: 0 0 0 3px rgba(26, 188, 254, 0.15);
     }
 
+    .mode_toggle {
+        appearance: none;
+        width: 1.35rem;
+        height: 1.35rem;
+        align-self: center;
+        border: 1px solid #cfc7b3;
+        border-radius: 6px;
+        background: #f5f2e9;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        cursor: pointer;
+        position: relative;
+        flex-shrink: 0;
+        transition: background 0.12s, border-color 0.12s;
+    }
+
+    .mode_toggle:hover {
+        border-color: #b8af98;
+    }
+
+    .mode_toggle:checked {
+        background: #a13a1c;
+        border-color: #a13a1c;
+    }
+
+    .mode_toggle:checked::after {
+        content: '';
+        position: absolute;
+        left: 6px;
+        top: 2px;
+        width: 5px;
+        height: 9px;
+        border: solid #ffffff;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+    }
+
+    .mode_toggle:focus-visible {
+        outline: none;
+        border-color: #1ABCFE;
+        box-shadow: 0 0 0 3px rgba(26, 188, 254, 0.15);
+    }
+
     .send_btn {
         padding: 0.75rem 2rem;
         background: #a13a1c;
@@ -250,6 +315,15 @@ const generateChord = () => {
         gap: 0.5rem;
         min-width: 120px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    @keyframes fadeInUp {to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     .step {
