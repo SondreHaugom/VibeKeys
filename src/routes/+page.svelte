@@ -1,7 +1,8 @@
 <script>
 import { chordsByGenre } from '$lib/chords.js'
+import { generateArpegios } from '$lib/arpegios.js'
 
-
+let arpegios = $state(generateArpegios);
 let selectedGenre = $state("Pop");
 let currentChords = $state([]);
 let isActive = $state(false);
@@ -24,8 +25,12 @@ const generate = () => {
 
 
 const generateArpegio = () => {
-    console.log("Her er jeg!!!!")
-    
+    try {
+        const arps = generateArpegios[isActive] ?? [];
+    } catch(Error) {
+        console.log(Error)
+    }
+
 }
 
 const generateChord = () => {
@@ -57,7 +62,11 @@ const generateChord = () => {
                 <option value="Klassisk">Klassisk</option>
                 <option value="Rock">Rock</option>
             </select>
-            <input class="mode_toggle" type="checkbox" bind:checked={isActive}>
+            <label class="mode_toggle_label">
+                <input class="mode_toggle" type="checkbox" bind:checked={isActive}>
+                <span class="mode_toggle_track"><span class="mode_toggle_thumb"></span></span>
+                <span class="mode_toggle_text">Arpeggio</span>
+            </label>
         </div>
 
         <div class="controls">
@@ -197,46 +206,62 @@ const generateChord = () => {
         box-shadow: 0 0 0 3px rgba(26, 188, 254, 0.15);
     }
 
+    .mode_toggle_label {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        cursor: pointer;
+        user-select: none;
+    }
+
     .mode_toggle {
-        appearance: none;
-        width: 1.35rem;
-        height: 1.35rem;
-        align-self: center;
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .mode_toggle_track {
+        position: relative;
+        width: 2.75rem;
+        height: 1.5rem;
+        flex-shrink: 0;
+        border-radius: 999px;
         border: 1px solid #cfc7b3;
-        border-radius: 6px;
         background: #f5f2e9;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        cursor: pointer;
-        position: relative;
-        flex-shrink: 0;
-        transition: background 0.12s, border-color 0.12s;
+        transition: background 0.15s, border-color 0.15s;
     }
 
-    .mode_toggle:hover {
-        border-color: #b8af98;
+    .mode_toggle_thumb {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 1.1rem;
+        height: 1.1rem;
+        border-radius: 50%;
+        background: #ffffff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        transition: transform 0.15s;
     }
 
-    .mode_toggle:checked {
+    .mode_toggle:checked + .mode_toggle_track {
         background: #a13a1c;
         border-color: #a13a1c;
     }
 
-    .mode_toggle:checked::after {
-        content: '';
-        position: absolute;
-        left: 6px;
-        top: 2px;
-        width: 5px;
-        height: 9px;
-        border: solid #ffffff;
-        border-width: 0 2px 2px 0;
-        transform: rotate(45deg);
+    .mode_toggle:checked + .mode_toggle_track .mode_toggle_thumb {
+        transform: translateX(1.25rem);
     }
 
-    .mode_toggle:focus-visible {
-        outline: none;
+    .mode_toggle:focus-visible + .mode_toggle_track {
         border-color: #1ABCFE;
         box-shadow: 0 0 0 3px rgba(26, 188, 254, 0.15);
+    }
+
+    .mode_toggle_text {
+        font-size: 0.9rem;
+        color: #4a4844;
     }
 
     .send_btn {
