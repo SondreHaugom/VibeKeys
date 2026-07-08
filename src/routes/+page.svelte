@@ -2,7 +2,6 @@
 import { chordsByGenre } from '$lib/chords.js'
 import { generateArpegios } from '$lib/arpegios.js'
 
-let arpegios = $state(generateArpegios);
 let selectedGenre = $state("Pop");
 let currentChords = $state([]);
 let isActive = $state(false);
@@ -25,13 +24,11 @@ const generate = () => {
 
 
 const generateArpegio = () => {
-    try {
-        const arps = generateArpegios[isActive] ?? [];
-    } catch(Error) {
-        console.log(Error)
-    }
-
+    const arpegios = generateArpegios();
+    const randomIndex = Math.floor(Math.random() * arpegios.length);
+    currentChords = arpegios[randomIndex];
 }
+
 
 const generateChord = () => {
     const chords = chordsByGenre[selectedGenre] ?? [];
