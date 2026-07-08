@@ -1,13 +1,32 @@
 <script>
 import { chordsByGenre } from '$lib/chords.js'
+import { generateArpegios } from '$lib/arpegios.js'
 
+let selectedGenre = $state("Pop");
+let currentChords = $state([]);
+let isActive = $state(false);
 
-let selectedGenre = $state("Pop")
-let currentChords = $state([])
-let refrech_btn = $state()
 
 const restartSite = () => {
     window.location.reload();
+}
+
+
+
+const generate = () => {
+    if (isActive) {
+        generateArpegio()
+    } else {
+        generateChord()
+    }
+}
+
+
+
+const generateArpegio = () => {
+    const arpegios = generateArpegios();
+    const randomIndex = Math.floor(Math.random() * arpegios.length);
+    currentChords = arpegios[randomIndex];
 }
 
 
@@ -40,10 +59,20 @@ const generateChord = () => {
                 <option value="Klassisk">Klassisk</option>
                 <option value="Rock">Rock</option>
             </select>
+            <label class="mode_toggle_label">
+                <input class="mode_toggle" type="checkbox" bind:checked={isActive}>
+                <span class="mode_toggle_track"><span class="mode_toggle_thumb"></span></span>
+                <span class="mode_toggle_text">Arpeggio</span>
+            </label>
         </div>
 
         <div class="controls">
-            <button class="send_btn" type="button" onclick={generateChord}>Generer akkord</button>
+            
+            <button class="send_btn" type="button" onclick={generate}>Generer</button>
+
+            
+
+
             <button class="refrech_btn" type="button" onclick={restartSite}>Start på nytt</button>
         </div>
 
@@ -174,6 +203,64 @@ const generateChord = () => {
         box-shadow: 0 0 0 3px rgba(26, 188, 254, 0.15);
     }
 
+    .mode_toggle_label {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .mode_toggle {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .mode_toggle_track {
+        position: relative;
+        width: 2.75rem;
+        height: 1.5rem;
+        flex-shrink: 0;
+        border-radius: 999px;
+        border: 1px solid #cfc7b3;
+        background: #f5f2e9;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        transition: background 0.15s, border-color 0.15s;
+    }
+
+    .mode_toggle_thumb {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 1.1rem;
+        height: 1.1rem;
+        border-radius: 50%;
+        background: #ffffff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        transition: transform 0.15s;
+    }
+
+    .mode_toggle:checked + .mode_toggle_track {
+        background: #a13a1c;
+        border-color: #a13a1c;
+    }
+
+    .mode_toggle:checked + .mode_toggle_track .mode_toggle_thumb {
+        transform: translateX(1.25rem);
+    }
+
+    .mode_toggle:focus-visible + .mode_toggle_track {
+        border-color: #1ABCFE;
+        box-shadow: 0 0 0 3px rgba(26, 188, 254, 0.15);
+    }
+
+    .mode_toggle_text {
+        font-size: 0.9rem;
+        color: #4a4844;
+    }
+
     .send_btn {
         padding: 0.75rem 2rem;
         background: #a13a1c;
@@ -250,6 +337,15 @@ const generateChord = () => {
         gap: 0.5rem;
         min-width: 120px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    @keyframes fadeInUp {to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     .step {
