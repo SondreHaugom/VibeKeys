@@ -1,42 +1,66 @@
-# sv
+# VybeKeys
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+[![Svelte](https://img.shields.io/badge/Svelte-5%2B-ff3e00?logo=svelte)](https://svelte.dev)
+[![SvelteKit](https://img.shields.io/badge/SvelteKit-2%2B-ff3e00?logo=svelte)](https://kit.svelte.dev)
+[![Status](https://img.shields.io/badge/status-under%20arbeid-yellow)](#)
 
-## Creating a project
+### Innholdsfortegnelse
+- [Om-prosjektet](#-Om-prosjektet)
+- [Funksjoner](#-Funksjoner)
+- [Filforklaring](#-Filforklaring)
+- [Installasjon-og-oppsett](#-Installasjon-og-oppsett)
+- [Sikkerhet-og-personvern](#-Sikkerhet-og-personvern)
 
-If you're seeing this, you've probably already done this step. Congrats!
 
-```sh
-# create a new project
-npx sv create my-app
+### VibeKeys
+
+VibeKeys er et musikkverktøy som lar deg generere akkordprogresjoner basert på ulike sjangere. Målet med tjenesten er å effektivisere prosessen med å finne akkorder til musikk, enten det er til pianokomposisjoner, låter, beats eller andre musikalske idéer.
+
+Foreløpig støtter VibeKeys sjangerne Pop, Rock, R&B og Klassisk. Denne kombinasjonen er basert på min egen musikalske smak og typen musikk jeg liker å lage. Akkordprogresjonene er valgt for å dekke flere ulike følelser og stemninger, slik at musikken kan bli variert, personlig og unik.
+
+VibeKeys er ment som en kreativ startmotor når du trenger inspirasjon. I stedet for å bruke lang tid på å lete etter riktige akkorder, kan du raskt generere en progresjon og bruke den som utgangspunkt for videre komponering, produksjon eller improvisasjon.
+
+Akkordene er ikke ment som en fasit, men som et fundament du kan bygge videre på. De kan spilles som de er, endres med egne inversjoner, kombineres med melodier, eller brukes sammen med ulike arpeggioer og spillemønstre.
+
+ 
+
+### Funksjoner
+
+- Velg sjanger: Pop, R&B, Klassisk og Rock.
+- Generer raskt nye akkordprogresjoner med ett klikk.
+- Veksle mellom akkordmodus og arpeggiomodus.
+- Vis hver akkord eller arpeggio som egne kort for enklere lesing.
+- Enkel «Start på nytt»-funksjon for å tilbakestille visningen.
+
+### Filforklaring
+
+- `src/routes/+page.svelte`
+  - Appens hovedside og brukergrensesnitt.
+  - Inneholder logikk for å generere sjangerbaserte akkorder og arpeggioer.
+- `src/lib/chords.js`
+  - Inneholder ferdige akkordprogresjoner for hver sjanger.
+- `src/lib/arpegios.js`
+  - Inneholder ferdige arpeggio-mønstre.
+
+### Installasjon og oppsett
+
+1. Åpne terminalen i prosjektmappen.
+2. Installer avhengigheter med:
+
+```bash
+npm install
 ```
 
-To recreate this project with the same configuration:
+3. Start utviklingsserveren med:
 
-```sh
-# recreate this project
-npx sv@0.16.1 create --template minimal --no-types --install npm ./
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
+```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+4. Åpne nettleseren på den adressen som vises i terminalen.
 
-To create a production version of your app:
+### Sikkerhet og personvern
 
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+- VibeKeys lagrer ingen brukerdata.
+- Appen kjøres lokalt i nettleseren under utvikling.
+- Det finnes ingen ekstern backend eller lagring i dette prosjektet.
