@@ -50,6 +50,24 @@ export const chordsByGenre = {
 
         // 17. Dark pop - mørk, filmisk og stor
         ["Cm", "Ab", "Eb", "Bb"],
+
+        // 18. Stadionpop - stort og feirende
+        ["G", "D", "Em", "C"],
+
+        // 19. Piano-ballade - klassisk I-V-vi-IV variant
+        ["F", "C", "Dm", "Bb"],
+
+        // 20. Synthpop - lys og drivende
+        ["Am", "F", "C", "G"],
+
+        // 21. Retro pop - 80-talls følelse
+        ["F", "G", "Em", "Am"],
+
+        // 22. Optimistisk pop - stigende progresjon
+        ["C", "D", "F", "G"],
+
+        // 23. Moderne pop-ballade - sårbar og åpen
+        ["Am", "C", "G", "D"],
     ],
     Rock: [
         // 1. Emosjonell rock med din C - Em - F - Fm-følelse
@@ -75,6 +93,21 @@ export const chordsByGenre = {
 
         // 8. Shoegaze/atmosfærisk rock med emosjonell bass
         ["C", "Em/G", "F", "Fm/Ab"],
+
+        // 9. Arena rock - stort og kraftfullt
+        ["C", "F", "G", "Am"],
+
+        // 10. Alternative rock - kantete og dynamisk
+        ["Em", "C", "G", "D"],
+
+        // 11. Blues rock - jordnær og rå
+        ["A", "D", "A", "E"],
+
+        // 12. Hard rock - tung og mørk
+        ["Em", "G", "D", "C"],
+
+        // 13. Southern rock - varm og groovy
+        ["G", "C", "D", "G"],
     ],
 
     "r&b": [
@@ -104,6 +137,21 @@ export const chordsByGenre = {
 
         // 9. Elegant/barokk-inspirert R&B/pop
         ["C", "G", "Am", "Em"],
+
+        // 10. Smooth R&B - lekker og avslappet
+        ["Fmaj7", "Em7", "Dm7", "G7"],
+
+        // 11. Alternative R&B - moderne og atmosfærisk
+        ["Am7", "Fmaj7", "Cmaj7", "G"],
+
+        // 12. Slow jam - sensuell og rolig
+        ["Dm7", "G7", "Cmaj7", "Am7"],
+
+        // 13. Trap-soul - mørk og minimalistisk
+        ["Fm", "Db", "Ab", "Eb"],
+
+        // 14. Classic Motown - lys og danseglad
+        ["C", "Am", "F", "G"],
     ],
 
     Klassisk: [
@@ -122,6 +170,49 @@ export const chordsByGenre = {
         // 5. Klassisk vals / romantisk vending
         ["C", "G/B", "Am", "Fm"],
 
+        // 6. Barokk - kontrapunktisk og verdig
+        ["C", "F", "G", "C"],
+
+        // 7. Melankolsk mollstykke - dyp og sørgmodig
+        ["Am", "Dm", "E", "Am"],
+
+        // 8. Pastoral - lett og lys
+        ["C", "F", "C", "G"],
+
+        // 9. Dramatisk crescendo - stor følelsesmessig bue
+        ["Cm", "Fm", "G", "Cm"],
+    ],
+
+    "Indie Pop": [
+        // 1. Klassisk indie pop - lys og luftig
+        ["C", "G", "Am", "F"],
+
+        // 2. Jangly gitarpop - optimistisk og feelgood
+        ["G", "D", "Em", "C"],
+
+        // 3. Bedroom indie pop - intim og drømmende
+        ["Cadd9", "Gadd9", "Am7", "Fadd9"],
+
+        // 4. Twee pop - søt og lekende
+        ["F", "C", "G", "Am"],
+
+        // 5. Dream-tinged indie pop - svevende og myk
+        ["Am7", "Fmaj7", "Cmaj7", "G"],
+
+        // 6. Melankolsk indie pop - bittersøt
+        ["C", "Em", "Am", "G"],
+
+        // 7. Synth-indie pop - retro og drivende
+        ["Am", "G", "C", "F"],
+
+        // 8. Sommerlig indie pop - lett og solfylt
+        ["D", "A", "Bm", "G"],
+
+        // 9. Lo-fi indie pop - varm og loop-vennlig
+        ["Fmaj7", "C", "G", "Am7"],
+
+        // 10. Anthemic indie pop - stor følelse, håpefull
+        ["C", "G", "F", "Am"],
     ]
 
 

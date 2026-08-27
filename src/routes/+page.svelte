@@ -58,12 +58,13 @@ const generateChord = () => {
                 <option value="r&b">R&B</option>
                 <option value="Klassisk">Klassisk</option>
                 <option value="Rock">Rock</option>
+                <option value="Indie Pop">Indie Pop</option>
             </select>
             <label class="mode_toggle_label">
                 <input class="mode_toggle" type="checkbox" bind:checked={isActive}>
                 <span class="mode_toggle_track"><span class="mode_toggle_thumb"></span></span>
                 <span class="mode_toggle_text">Arpeggio</span>
-            </label>
+            </label>-
         </div>
 
         <div class="controls">
