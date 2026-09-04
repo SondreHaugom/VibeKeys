@@ -53,7 +53,7 @@ const generateChord = () => {
 
     <div class="canvas_area">
         <div class="controls">
-            <select class="genres" bind:value={selectedGenre}>
+            <select class="genres" bind:value={selectedGenre} disabled={isActive}>
                 <option value="Pop">Pop</option>
                 <option value="r&b">R&B</option>
                 <option value="Klassisk">Klassisk</option>
@@ -64,16 +64,12 @@ const generateChord = () => {
                 <input class="mode_toggle" type="checkbox" bind:checked={isActive}>
                 <span class="mode_toggle_track"><span class="mode_toggle_thumb"></span></span>
                 <span class="mode_toggle_text">Arpeggio</span>
-            </label>-
+            </label>
         </div>
 
         <div class="controls">
             
             <button class="send_btn" type="button" onclick={generate}>Generer</button>
-
-            
-
-
             <button class="refrech_btn" type="button" onclick={restartSite}>Start på nytt</button>
         </div>
 
