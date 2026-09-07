@@ -1,4 +1,5 @@
 <script>
+import { goto } from '$app/navigation'
 import { chordsByGenre } from '$lib/chords.js'
 import { generateArpegios } from '$lib/arpegios.js'
 
