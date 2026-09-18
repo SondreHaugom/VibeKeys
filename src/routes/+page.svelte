@@ -19,18 +19,13 @@ let isActive = $state(false);
 
 function generateChords() {
     console.log("Generating chords for genre:", selectedGenre, "and key: ", selectedKey);
-
-    const akkordType = Progression.fromRomanNumerals(selectedKey, chordsByGenre[selectedGenre].flat());
-    console.log(akkordType);
-
-
     
-    for (let i = 0; i < 4; i++) {
-        const randomChord = akkordType[Math.floor(Math.random() * akkordType.length)];
-        generatedProgression.push(randomChord);
-    }
+    const akkordType = Progression.fromRomanNumerals(
+        selectedKey,
+        chordsByGenre[selectedGenre][Math.floor(Math.random() * chordsByGenre[selectedGenre].length)]
+    );
+    console.log("Her er alle akkord progresjonene:", akkordType);
 
-    console.log("Generated progression:", generatedProgression);
 
     generatedProgression = [];
     

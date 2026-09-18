@@ -1,4 +1,4 @@
-export const chordPatternsByGenre = {
+export const chordsByGenre = {
   Pop: [
     // 1. Din signaturfølelse - vakker, enkel og bittersøt
     ["I", "iii", "IV", "iv"],
