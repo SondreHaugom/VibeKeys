@@ -60,6 +60,20 @@ function generateChords() {
                 
             </div>
 
+        <div class="chord_display">
+            {#if generatedProgression.length === 0}
+                <p class="placeholder">Trykk på "Generer" for å lage en akkordprogresjon</p>
+            {:else}
+                <div class="chord_row">
+                    {#each generatedProgression as chord, index}
+                        <div class="chord_card">
+                            <span class="step">Trinn {index + 1}</span>
+                            <span class="chord_name">{chord}</span>
+                        </div>
+                    {/each}
+                </div>
+            {/if}
+        </div>
     </div>
 </div>
 
