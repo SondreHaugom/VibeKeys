@@ -1,377 +1,218 @@
 export const chordsByGenre = {
     Pop: [
-        // 1. Din signaturfølelse - vakker, enkel og bittersøt
-        ["C", "Em", "F", "Fm"],
+        // C - Em - F - Fm
+        ["IMaj7", "IIIm7", "IVMaj7", "ivm7"],
 
-        // 2. Klassisk pop - åpen, trygg og melodisk
-        ["C", "G/B", "Am", "F"],
+        // C - G/B - Am - F
+        ["IMaj7", "V/3", "VIm7", "IVMaj7"],
 
-        // 3. Signaturvariant med emosjonell bassbevegelse
-        ["C", "Em/G", "F", "Fm/Ab"],
+        // C - Em/G - F - Fm/Ab
+        ["IMaj7", "III/5", "IVMaj7", "ivm7/3"],
 
-        // 4. Bedroom pop - intim og varm
-        ["C", "Em", "Am", "F"],
+        // C - Em - Am - F
+        ["IMaj7", "IIIm7", "VIm7", "IVMaj7"],
 
-        // 5. Håpefull, men med mørk vending på slutten
-        ["C", "G", "Am", "Fm"],
+        // C - G - Am - Fm
+        ["IMaj7", "V7", "VIm7", "ivm7"],
 
-        // 6. Sad pop - enkel, direkte og følelsesladet
-        ["Am", "F", "C", "G"],
+        // Am - F - C - G
+        ["VIm7", "IVMaj7", "IMaj7", "V7"],
 
-        // 7. Litt mer dramatisk pop med dur/moll-kontrast
-        ["C", "E", "F", "Fm"],
+        // C - E - F - Fm
+        ["IMaj7", "IIIMaj7", "IVMaj7", "ivm7"],
 
-        // 8. Myk og melodisk popballade
-        ["C", "Dm", "F", "Fm"],
+        // C - Dm - F - Fm
+        ["IMaj7", "IIm7", "IVMaj7", "ivm7"],
 
-        // 9. Nostalgisk pop - enkel, men sår
-        ["C", "Am", "F", "Fm"],
+        // C - Am - F - Fm
+        ["IMaj7", "VIm7", "IVMaj7", "ivm7"],
 
-        // 10. Fallende bassfølelse - veldig sangbar
-        ["C", "G/B", "Am", "Fm"],
+        // C - G/B - Am - Fm
+        ["IMaj7", "V/3", "VIm7", "ivm7"],
 
-        // 11. Nordic folk/pop - mørk, enkel og jordnær
-        ["Am", "C/G", "F", "E"],
+        // Am - C/G - F - E
+        ["Im7", "III/5", "VIMaj7", "V7"],
 
-        // 12. French/chanson-inspirert pop - litt teatralsk
-        ["C", "Em", "Am", "D"],
+        // C - Em - Am - D
+        ["IMaj7", "IIIm7", "VIm7", "IIMaj7"],
 
-        // 13. Dream pop med lette farger, men fortsatt åpen
-        ["Cadd9", "Em", "Fadd9", "Fm"],
+        // Cadd9 - Em - Fadd9 - Fm
+        ["IMaj7add9", "IIIm7", "IVMaj7add9", "ivm7"],
 
-        // 14. Mørkere europeisk pop - spenning og lengsel
-        ["Am", "G", "F", "E"],
+        // Am - G - F - E
+        ["Im7", "VII", "VI", "V7"],
 
-        // 15. Ambient pop - luftig og rolig
-        ["C", "F", "Am", "Gsus4"],
+        // C - F - Am - Gsus4
+        ["IMaj7", "IVMaj7", "VIm7", "Vsus4"],
 
-        // 16. Lo-fi pop - enkel, varm og loop-vennlig
-        ["C", "Am", "Dm", "G"],
+        // C - Am - Dm - G
+        ["IMaj7", "VIm7", "IIm7", "V7"],
 
-        // 17. Dark pop - mørk, filmisk og stor
-        ["Cm", "Ab", "Eb", "Bb"],
+        // Cm - Ab - Eb - Bb
+        ["VIm7", "IVMaj7", "IMaj7", "V7"],
 
-        // 18. Stadionpop - stort og feirende
-        ["G", "D", "Em", "C"],
+        // G - D - Em - C
+        ["IMaj7", "V7", "VIm7", "IVMaj7"],
 
-        // 19. Piano-ballade - klassisk I-V-vi-IV variant
-        ["F", "C", "Dm", "Bb"],
+        // F - C - Dm - Bb
+        ["IMaj7", "V7", "VIm7", "IVMaj7"],
 
-        // 20. Synthpop - lys og drivende
-        ["Am", "F", "C", "G"],
+        // Am - F - C - G
+        ["VIm7", "IVMaj7", "IMaj7", "V7"],
 
-        // 21. Retro pop - 80-talls følelse
-        ["F", "G", "Em", "Am"],
+        // F - G - Em - Am
+        ["IVMaj7", "V7", "IIIm7", "VIm7"],
 
-        // 22. Optimistisk pop - stigende progresjon
-        ["C", "D", "F", "G"],
+        // C - D - F - G
+        ["IMaj7", "IIMaj7", "IVMaj7", "V7"],
 
-        // 23. Moderne pop-ballade - sårbar og åpen
-        ["Am", "C", "G", "D"],
+        // Am - C - G - D
+        ["IIm7", "IVMaj7", "IMaj7", "V7"],
     ],
+
     Rock: [
-        // 1. Emosjonell rock med din C - Em - F - Fm-følelse
-        ["C", "E", "F", "Fm"],
+        // C - E - F - Fm
+        ["IMaj7", "IIIMaj7", "IVMaj7", "ivm7"],
 
-        // 2. Klassisk rock - sterk og åpen
-        ["G", "D", "Em", "C"],
+        // G - D - Em - C
+        ["IMaj7", "V7", "VIm7", "IVMaj7"],
 
-        // 3. Britpop/indie rock - melodisk og tilgjengelig
-        ["C", "G", "Am", "F"],
+        // C - G - Am - F
+        ["IMaj7", "V7", "VIm7", "IVMaj7"],
 
-        // 4. Garage rock - enkel, rå og direkte
-        ["A", "D", "E", "F"],
+        // A - D - E - F
+        ["IMaj7", "IVMaj7", "V7", "bVIMaj7"],
 
-        // 5. Mørkere rock / post-punk
-        ["Dm", "Bb", "F", "C"],
+        // Dm - Bb - F - C
+        ["VIm7", "IVMaj7", "IMaj7", "V7"],
 
-        // 6. Indie rock - sår og nostalgisk
-        ["C", "Em", "F", "Fm"],
+        // C - Em - F - Fm
+        ["IMaj7", "IIIm7", "IVMaj7", "ivm7"],
 
-        // 7. Punk-pop - rask, enkel og energisk
-        ["G", "C", "D", "Em"],
+        // G - C - D - Em
+        ["IMaj7", "IVMaj7", "V7", "VIm7"],
 
-        // 8. Shoegaze/atmosfærisk rock med emosjonell bass
-        ["C", "Em/G", "F", "Fm/Ab"],
+        // C - Em/G - F - Fm/Ab
+        ["IMaj7", "III/5", "IVMaj7", "ivm7/3"],
 
-        // 9. Arena rock - stort og kraftfullt
-        ["C", "F", "G", "Am"],
+        // C - F - G - Am
+        ["IMaj7", "IVMaj7", "V7", "VIm7"],
 
-        // 10. Alternative rock - kantete og dynamisk
-        ["Em", "C", "G", "D"],
+        // Em - C - G - D
+        ["Im7", "VIMaj7", "IIIMaj7", "VII"],
 
-        // 11. Blues rock - jordnær og rå
-        ["A", "D", "A", "E"],
+        // A - D - A - E
+        ["IMaj7", "IVMaj7", "IMaj7", "V7"],
 
-        // 12. Hard rock - tung og mørk
-        ["Em", "G", "D", "C"],
+        // Em - G - D - C
+        ["Im7", "IIIMaj7", "VII", "VI"],
 
-        // 13. Southern rock - varm og groovy
-        ["G", "C", "D", "G"],
+        // G - C - D - G
+        ["IMaj7", "IVMaj7", "V7", "IMaj7"],
     ],
 
     "r&b": [
-        // 1. Enkel R&B - myk, emosjonell og åpen
-        ["C", "Em", "F", "Fm"],
+        // C - Em - F - Fm
+        ["IMaj7", "IIIm7", "IVMaj7", "ivm7"],
 
-        // 2. Myk R&B med litt farge, uten å bli for jazzy
-        ["Cadd9", "Em", "Fadd9", "Fm6"],
+        // Cadd9 - Em - Fadd9 - Fm6
+        ["IMaj7add9", "IIIm7", "IVMaj7add9", "ivm6"],
 
-        // 3. Bedroom R&B - intim og varm
-        ["C", "Em/G", "Am", "F"],
+        // C - Em/G - Am - F
+        ["IMaj7", "III/5", "VIm7", "IVMaj7"],
 
-        // 4. 90s R&B-inspirert, men enklere fundament
-        ["C#m", "E", "A", "G#"],
+        // C#m - E - A - G#
+        ["Im7", "IIIMaj7", "VIMaj7", "V7"],
 
-        // 5. Gospel-inspirert - håpefull og løftende
-        ["G", "C", "Em", "D"],
+        // G - C - Em - D
+        ["IMaj7", "IVMaj7", "VIm7", "V7"],
 
-        // 6. Neo-soul-light - myk, men ikke for kompleks
-        ["Cm", "F", "Bb", "Eb"],
+        // Cm - F - Bb - Eb
+        ["IIm7", "V7", "IMaj7", "IVMaj7"],
 
-        // 7. Minimalistisk R&B - enkel og loop-vennlig
-        ["Am", "Dm", "G", "C"],
+        // Am - Dm - G - C
+        ["VIm7", "IIm7", "V7", "IMaj7"],
 
-        // 8. Cinematic R&B - stor, varm og melodisk
-        ["C", "G/B", "Am", "F"],
+        // C - G/B - Am - F
+        ["IMaj7", "V/3", "VIm7", "IVMaj7"],
 
-        // 9. Elegant/barokk-inspirert R&B/pop
-        ["C", "G", "Am", "Em"],
+        // C - G - Am - Em
+        ["IMaj7", "V7", "VIm7", "IIIm7"],
 
-        // 10. Smooth R&B - lekker og avslappet
-        ["Fmaj7", "Em7", "Dm7", "G7"],
+        // Fmaj7 - Em7 - Dm7 - G7
+        ["IVMaj7", "IIIm7", "IIm7", "V7"],
 
-        // 11. Alternative R&B - moderne og atmosfærisk
-        ["Am7", "Fmaj7", "Cmaj7", "G"],
+        // Am7 - Fmaj7 - Cmaj7 - G
+        ["VIm7", "IVMaj7", "IMaj7", "V7"],
 
-        // 12. Slow jam - sensuell og rolig
-        ["Dm7", "G7", "Cmaj7", "Am7"],
+        // Dm7 - G7 - Cmaj7 - Am7
+        ["IIm7", "V7", "IMaj7", "VIm7"],
 
-        // 13. Trap-soul - mørk og minimalistisk
-        ["Fm", "Db", "Ab", "Eb"],
+        // Fm - Db - Ab - Eb
+        ["VIm7", "IVMaj7", "IMaj7", "V7"],
 
-        // 14. Classic Motown - lys og danseglad
-        ["C", "Am", "F", "G"],
+        // C - Am - F - G
+        ["IMaj7", "VIm7", "IVMaj7", "V7"],
     ],
 
     Klassisk: [
-        // 1. Romantisk piano - lyrisk og emosjonell
-        ["C", "Em/B", "Am", "F"],
+        // C - Em/B - Am - F
+        ["IMaj7", "III/7", "VIm7", "IVMaj7"],
 
-        // 2. Impresjonistisk - drømmende, men enkelt
-        ["C", "F", "Am", "Gsus4"],
+        // C - F - Am - Gsus4
+        ["IMaj7", "IVMaj7", "VIm7", "Vsus4"],
 
-        // 3. Minimalistisk - rolig, åpen og gradvis stigende
-        ["C", "Dm", "Em", "F"],
+        // C - Dm - Em - F
+        ["IMaj7", "IIm7", "IIIm7", "IVMaj7"],
 
-        // 4. Filmisk spenning - mørk og dramatisk
-        ["Cm", "Ab", "Eb", "Bb"],
+        // Cm - Ab - Eb - Bb
+        ["VIm7", "IVMaj7", "IMaj7", "V7"],
 
-        // 5. Klassisk vals / romantisk vending
-        ["C", "G/B", "Am", "Fm"],
+        // C - G/B - Am - Fm
+        ["IMaj7", "V/3", "VIm7", "ivm7"],
 
-        // 6. Barokk - kontrapunktisk og verdig
-        ["C", "F", "G", "C"],
+        // C - F - G - C
+        ["IMaj7", "IVMaj7", "V7", "IMaj7"],
 
-        // 7. Melankolsk mollstykke - dyp og sørgmodig
-        ["Am", "Dm", "E", "Am"],
+        // Am - Dm - E - Am
+        ["Im7", "ivm7", "V7", "Im7"],
 
-        // 8. Pastoral - lett og lys
-        ["C", "F", "C", "G"],
+        // C - F - C - G
+        ["IMaj7", "IVMaj7", "IMaj7", "V7"],
 
-        // 9. Dramatisk crescendo - stor følelsesmessig bue
-        ["Cm", "Fm", "G", "Cm"],
+        // Cm - Fm - G - Cm
+        ["Im7", "ivm7", "V7", "Im7"],
     ],
 
     "Indie Pop": [
-        // 1. Klassisk indie pop - lys og luftig
-        ["C", "G", "Am", "F"],
+        // C - G - Am - F
+        ["IMaj7", "V7", "VIm7", "IVMaj7"],
 
-        // 2. Jangly gitarpop - optimistisk og feelgood
-        ["G", "D", "Em", "C"],
+        // G - D - Em - C
+        ["IMaj7", "V7", "VIm7", "IVMaj7"],
 
-        // 3. Bedroom indie pop - intim og drømmende
-        ["Cadd9", "Gadd9", "Am7", "Fadd9"],
+        // Cadd9 - Gadd9 - Am7 - Fadd9
+        ["IMaj7add9", "V7add9", "VIm7", "IVMaj7add9"],
 
-        // 4. Twee pop - søt og lekende
-        ["F", "C", "G", "Am"],
+        // F - C - G - Am
+        ["IMaj7", "V7", "IIMaj7", "VIm7"],
 
-        // 5. Dream-tinged indie pop - svevende og myk
-        ["Am7", "Fmaj7", "Cmaj7", "G"],
+        // Am7 - Fmaj7 - Cmaj7 - G
+        ["VIm7", "IVMaj7", "IMaj7", "V7"],
 
-        // 6. Melankolsk indie pop - bittersøt
-        ["C", "Em", "Am", "G"],
+        // C - Em - Am - G
+        ["IMaj7", "IIIm7", "VIm7", "V7"],
 
-        // 7. Synth-indie pop - retro og drivende
-        ["Am", "G", "C", "F"],
+        // Am - G - C - F
+        ["VIm7", "V7", "IMaj7", "IVMaj7"],
 
-        // 8. Sommerlig indie pop - lett og solfylt
-        ["D", "A", "Bm", "G"],
+        // D - A - Bm - G
+        ["IMaj7", "V7", "VIm7", "IVMaj7"],
 
-        // 9. Lo-fi indie pop - varm og loop-vennlig
-        ["Fmaj7", "C", "G", "Am7"],
+        // Fmaj7 - C - G - Am7
+        ["IVMaj7", "IMaj7", "V7", "VIm7"],
 
-        // 10. Anthemic indie pop - stor følelse, håpefull
-        ["C", "G", "F", "Am"],
-    ]
-
-
+        // C - G - F - Am
+        ["IMaj7", "V7", "IVMaj7", "VIm7"],
+    ],
 };
-
-
-
-
-
-
-
-
-
-/*
-
-export function pop_chords() {
-    const pop_chords = [
-        // 1. Din signaturfølelse - vakker, enkel og bittersøt
-        ["C", "Em", "F", "Fm"],
-
-        // 2. Klassisk pop - åpen, trygg og melodisk
-        ["C", "G/B", "Am", "F"],
-
-        // 3. Signaturvariant med emosjonell bassbevegelse
-        ["C", "Em/G", "F", "Fm/Ab"],
-
-        // 4. Bedroom pop - intim og varm
-        ["C", "Em", "Am", "F"],
-
-        // 5. Håpefull, men med mørk vending på slutten
-        ["C", "G", "Am", "Fm"],
-
-        // 6. Sad pop - enkel, direkte og følelsesladet
-        ["Am", "F", "C", "G"],
-
-        // 7. Litt mer dramatisk pop med dur/moll-kontrast
-        ["C", "E", "F", "Fm"],
-
-        // 8. Myk og melodisk popballade
-        ["C", "Dm", "F", "Fm"],
-
-        // 9. Nostalgisk pop - enkel, men sår
-        ["C", "Am", "F", "Fm"],
-
-        // 10. Fallende bassfølelse - veldig sangbar
-        ["C", "G/B", "Am", "Fm"],
-
-        // 11. Nordic folk/pop - mørk, enkel og jordnær
-        ["Am", "C/G", "F", "E"],
-
-        // 12. French/chanson-inspirert pop - litt teatralsk
-        ["C", "Em", "Am", "D"],
-
-        // 13. Dream pop med lette farger, men fortsatt åpen
-        ["Cadd9", "Em", "Fadd9", "Fm"],
-
-        // 14. Mørkere europeisk pop - spenning og lengsel
-        ["Am", "G", "F", "E"],
-
-        // 15. Ambient pop - luftig og rolig
-        ["C", "F", "Am", "Gsus4"],
-
-        // 16. Lo-fi pop - enkel, varm og loop-vennlig
-        ["C", "Am", "Dm", "G"],
-
-        // 17. Dark pop - mørk, filmisk og stor
-        ["Cm", "Ab", "Eb", "Bb"],
-    ];
-    return pop_chords;
-}
-
-
-
-export function rock_chords() {
-    const rock_chords = [
-
-        // 1. Emosjonell rock med din C - Em - F - Fm-følelse
-        ["C", "E", "F", "Fm"],
-
-        // 2. Klassisk rock - sterk og åpen
-        ["G", "D", "Em", "C"],
-
-        // 3. Britpop/indie rock - melodisk og tilgjengelig
-        ["C", "G", "Am", "F"],
-
-        // 4. Garage rock - enkel, rå og direkte
-        ["A", "D", "E", "F"],
-
-        // 5. Mørkere rock / post-punk
-        ["Dm", "Bb", "F", "C"],
-
-        // 6. Indie rock - sår og nostalgisk
-        ["C", "Em", "F", "Fm"],
-
-        // 7. Punk-pop - rask, enkel og energisk
-        ["G", "C", "D", "Em"],
-
-        // 8. Shoegaze/atmosfærisk rock med emosjonell bass
-        ["C", "Em/G", "F", "Fm/Ab"],
-
-    ];
-    return rock_chords;
-}
-
-
-
-
-export function rhythm_and_Blues_chords() {
-    const rhythm_and_Blues_chords = [
-        // 1. Enkel R&B - myk, emosjonell og åpen
-        ["C", "Em", "F", "Fm"],
-
-        // 2. Myk R&B med litt farge, uten å bli for jazzy
-        ["Cadd9", "Em", "Fadd9", "Fm6"],
-
-        // 3. Bedroom R&B - intim og varm
-        ["C", "Em/G", "Am", "F"],
-
-        // 4. 90s R&B-inspirert, men enklere fundament
-        ["C#m", "E", "A", "G#"],
-
-        // 5. Gospel-inspirert - håpefull og løftende
-        ["G", "C", "Em", "D"],
-
-        // 6. Neo-soul-light - myk, men ikke for kompleks
-        ["Cm", "F", "Bb", "Eb"],
-
-        // 7. Minimalistisk R&B - enkel og loop-vennlig
-        ["Am", "Dm", "G", "C"],
-
-        // 8. Cinematic R&B - stor, varm og melodisk
-        ["C", "G/B", "Am", "F"],
-
-        // 9. Elegant/barokk-inspirert R&B/pop
-        ["C", "G", "Am", "Em"],
-    ];
-    return rhythm_and_Blues_chords;
-}
-
-
-export function klassisk() {
-    const klassisk = [
-
-        // 1. Romantisk piano - lyrisk og emosjonell
-        ["C", "Em/B", "Am", "F"],
-
-        // 2. Impresjonistisk - drømmende, men enkelt
-        ["C", "F", "Am", "Gsus4"],
-
-        // 3. Minimalistisk - rolig, åpen og gradvis stigende
-        ["C", "Dm", "Em", "F"],
-
-        // 4. Filmisk spenning - mørk og dramatisk
-        ["Cm", "Ab", "Eb", "Bb"],
-
-        // 5. Klassisk vals / romantisk vending
-        ["C", "G/B", "Am", "Fm"],
-    ];
-    return klassisk;
-}
-
-*/

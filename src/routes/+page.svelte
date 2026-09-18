@@ -1,49 +1,52 @@
 <script>
-import { goto } from '$app/navigation'
-import { chordsByGenre } from '$lib/chords.js'
+import { Progression } from "tonal"; 
 import { generateArpegios } from '$lib/arpegios.js'
 
-let selectedGenre = $state("Pop");
+
 let currentChords = $state([]);
 let isActive = $state(false);
 
 
-const restartSite = () => {
-    window.location.reload();
-}
+  // Sjanger-kartet vårt som snakker med biblioteket
+  const genreToScaleMap = {
+    pop: "major",
+    rock: "mixolydian",
+    edm: "minor",
+    lofi: "dorian",
+    jazz: "major seventh"
+  };
+  
+  
+  let selectedGenre = "Pop";
+  let selectedKey = "C";
+  let generatedProgression = []; // Her lagres akkordene som genereres
 
 
 
-const generate = () => {
-    if (isActive) {
-        generateArpegio()
-    } else {
-        generateChord()
+
+function generateChords() {
+    console.log("Generating chords for genre:", selectedGenre, "and key: ", selectedKey);
+
+    const akkordType = Progression.fromRomanNumerals(selectedKey, generateArpegios());
+    console.log(akkordType);
+
+
+    
+    for (let i = 0; i < 4; i++) {
+        const randomChord = akkordType[Math.floor(Math.random() * akkordType.length)];
+        generatedProgression.push(randomChord);
     }
+
+    console.log("Generated progression:", generatedProgression);
+
+    generatedProgression = [];
+    
 }
 
-
-
-const generateArpegio = () => {
-    const arpegios = generateArpegios();
-    const randomIndex = Math.floor(Math.random() * arpegios.length);
-    currentChords = arpegios[randomIndex];
-}
-
-
-const generateChord = () => {
-    const chords = chordsByGenre[selectedGenre] ?? [];
-    if (!chords) {
-        console.log("Her er det feil med imporetringen av akkordene")
-    } else {
-        console.log("Alt fungerer")
-    }
+  
 
 
 
-    const randomIndex = Math.floor(Math.random() * chords.length)
-    currentChords = chords[randomIndex]
-}
 </script>
 
 <div class="main_container">
@@ -53,41 +56,13 @@ const generateChord = () => {
     </header>
 
     <div class="canvas_area">
-        <div class="controls">
-            <select class="genres" bind:value={selectedGenre} disabled={isActive}>
-                <option value="Pop">Pop</option>
-                <option value="r&b">R&B</option>
-                <option value="Klassisk">Klassisk</option>
-                <option value="Rock">Rock</option>
-                <option value="Indie Pop">Indie Pop</option>
-            </select>
-            <label class="mode_toggle_label">
-                <input class="mode_toggle" type="checkbox" bind:checked={isActive}>
-                <span class="mode_toggle_track"><span class="mode_toggle_thumb"></span></span>
-                <span class="mode_toggle_text">Arpeggio</span>
-            </label>
-        </div>
 
         <div class="controls">
             
-            <button class="send_btn" type="button" onclick={generate}>Generer</button>
+            <button class="send_btn" type="button" onclick={generateChords}>Generer</button>
             <button class="refrech_btn" type="button" onclick={restartSite}>Start på nytt</button>
         </div>
 
-        <div class="chord_display">
-            {#if currentChords.length === 0}
-                <p class="placeholder">Velg en sjanger og trykk generer</p>
-            {:else}
-                <div class="chord_row">
-                    {#each currentChords as chord, i}
-                        <div class="chord_card">
-                            <span class="step">{i + 1}</span>
-                            <span class="chord_name">{chord}</span>
-                        </div>
-                    {/each}
-                </div>
-            {/if}
-        </div>
     </div>
 </div>
 
