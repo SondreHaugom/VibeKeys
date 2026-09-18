@@ -1,6 +1,6 @@
 <script>
 import { Progression } from "tonal"; 
-import { generateArpegios } from '$lib/arpegios.js'
+import { chordsByGenre } from '$lib/chords.js'
 
 
 let currentChords = $state([]);
@@ -8,18 +8,11 @@ let isActive = $state(false);
 
 
   // Sjanger-kartet vårt som snakker med biblioteket
-  const genreToScaleMap = {
-    pop: "major",
-    rock: "mixolydian",
-    edm: "minor",
-    lofi: "dorian",
-    jazz: "major seventh"
-  };
   
   
-  let selectedGenre = "Pop";
-  let selectedKey = "C";
-  let generatedProgression = []; // Her lagres akkordene som genereres
+  let selectedGenre = $state("Klassisk");
+  let selectedKey = $state("C");
+  let generatedProgression = $state([]);
 
 
 
@@ -27,7 +20,7 @@ let isActive = $state(false);
 function generateChords() {
     console.log("Generating chords for genre:", selectedGenre, "and key: ", selectedKey);
 
-    const akkordType = Progression.fromRomanNumerals(selectedKey, generateArpegios());
+    const akkordType = Progression.fromRomanNumerals(selectedKey, chordsByGenre[selectedGenre].flat());
     console.log(akkordType);
 
 
@@ -42,11 +35,6 @@ function generateChords() {
     generatedProgression = [];
     
 }
-
-  
-
-
-
 </script>
 
 <div class="main_container">
@@ -58,10 +46,24 @@ function generateChords() {
     <div class="canvas_area">
 
         <div class="controls">
-            
+            <select class="genres" bind:value={selectedGenre}>
+                {#each Object.keys(chordsByGenre) as genre}
+                    <option value={genre}>{genre}</option>
+                {/each}
+            </select>
+
+           <select class="genres" bind:value={selectedKey}>
+                {#each ["C", "D", "E", "F", "G", "A", "B"] as key}
+                    <option value={key}>{key}</option>
+                {/each}
+            </select>
+                    
             <button class="send_btn" type="button" onclick={generateChords}>Generer</button>
-            <button class="refrech_btn" type="button" onclick={restartSite}>Start på nytt</button>
-        </div>
+            <button class="refrech_btn" type="button" >Start på nytt</button>
+
+  
+                
+            </div>
 
     </div>
 </div>
