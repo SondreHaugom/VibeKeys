@@ -6,15 +6,16 @@ import { chordsByGenre } from '$lib/chords.js'
 let currentChords = $state([]);
 let isActive = $state(false);
 
+const restartSite = () => {
+    window.location.reload();
+}
 
   // Sjanger-kartet vårt som snakker med biblioteket
   
   
-  let selectedGenre = $state("Klassisk");
+  let selectedGenre = $state("Pop");
   let selectedKey = $state("C");
   let generatedProgression = $state([]);
-
-
 
 
 function generateChords() {
@@ -27,8 +28,8 @@ function generateChords() {
     console.log("Her er alle akkord progresjonene:", akkordType);
 
 
-    generatedProgression = [];
-    
+    generatedProgression = akkordType;
+
 }
 </script>
 
@@ -54,8 +55,7 @@ function generateChords() {
             </select>
                     
             <button class="send_btn" type="button" onclick={generateChords}>Generer</button>
-            <button class="refrech_btn" type="button" >Start på nytt</button>
-
+            <button class="refrech_btn" type="button" onclick={restartSite} >Start på nytt</button>
   
                 
             </div>
@@ -70,6 +70,7 @@ function generateChords() {
                             <span class="step">Trinn {index + 1}</span>
                             <span class="chord_name">{chord}</span>
                         </div>
+                
                     {/each}
                 </div>
             {/if}
