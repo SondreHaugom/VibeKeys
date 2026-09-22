@@ -1,6 +1,8 @@
 <script>
-import { Progression } from "tonal"; 
+import { pitch, Progression } from "tonal"; 
 import { chordsByGenre } from '$lib/chords.js'
+import fs from 'fs';
+import MidiWriter from 'midi-writer-js';
 
 
 let currentChords = $state([]);
@@ -16,6 +18,37 @@ const restartSite = () => {
   let selectedGenre = $state("Pop");
   let selectedKey = $state("C");
   let generatedProgression = $state([]);
+
+
+
+function generateMidiFile() {
+    console.log("Du trykket på knappen")    
+
+    const track = new MidiWriter.Track();
+
+
+    track.addEvent(new MidiWriter.NoteEvent({
+        pitch: ['C4', 'E4', 'G4'],
+        duration: "1",
+        velocity: 100
+    }));
+
+    const writer = new MidiWriter.Writer(track);
+    if (!writer) {
+        console.error("Writer is null or undefined");
+    }
+    const blob = new Blob([writer.buildFile()], { type: 'audio/midi' });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = 'output.mid';
+    a.click();
+
+    RL.revokeObjectURL(url);
+
+};
+
 
 
 function generateChords() {
@@ -56,7 +89,7 @@ function generateChords() {
                     
             <button class="send_btn" type="button" onclick={generateChords}>Generer</button>
             <button class="refrech_btn" type="button" onclick={restartSite} >Start på nytt</button>
-  
+            <button class="" type="button" onclick={generateMidiFile} >Last ned</button>
                 
             </div>
 
