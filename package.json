@@ -15,5 +15,9 @@
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",
 		"svelte": "^5.56.1",
 		"vite": "^8.0.16"
+	},
+	"dependencies": {
+		"midi-writer-js": "^3.2.1",
+		"tonal": "^6.4.3"
 	}
 }
