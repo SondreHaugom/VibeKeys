@@ -1,8 +1,9 @@
 <script>
-import { pitch, Progression } from "tonal"; 
 import { chordsByGenre } from '$lib/chords.js'
+import { generateProgressionChords } from '$lib/progression.js'
 import fs from 'fs';
 import MidiWriter from 'midi-writer-js';
+import {Sequencer, Soundfont, SplendidGrandPiano } from "smplr";
 
 
 let currentChords = $state([]);
@@ -20,19 +21,29 @@ const restartSite = () => {
   let generatedProgression = $state([]);
 
 
+async function playChords() {
+    console.log("Du trykket på knappen");
+    
+    const context = new AudioContext();
+    const piano = SplendidGrandPiano(context);
+
+    const seq = Sequencer(context, {bpm: 110, loop: true});
+    seq.addTrack(piano, [
+        { note: "C4", at: "1:1", duration: "4n" },
+        { note: "E4", at: "1:2", duration: "4n" },
+        { note: "G4", at: "1:3", duration: "4n" },
+    ]);
+    
+    await seq.load; 
+    
+    seq.start();
+}
+
 
 function generateChords() {
-    //console.log("Generating chords for genre:", selectedGenre, "and key: ", selectedKey);
-    
-    const akkordType = Progression.fromRomanNumerals(
-        selectedKey,
-        chordsByGenre[selectedGenre][Math.floor(Math.random() * chordsByGenre[selectedGenre].length)]
-    );
-    //console.log("Her er alle akkord progresjonene:", akkordType);
+    const romanNumerals = chordsByGenre[selectedGenre][Math.floor(Math.random() * chordsByGenre[selectedGenre].length)];
 
-
-    generatedProgression = akkordType;
-
+    generatedProgression = generateProgressionChords(selectedKey, romanNumerals);
 }
 
 /*
@@ -128,6 +139,10 @@ function generateMidiFile() {
                 <button class="btn btn_primary" type="button" onclick={generateChords}>
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z" /><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z" /></svg>
                     Generer
+                </button>
+                <button class="btn btn_secondary" type="button" onclick={playChords}>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3v18l15-9L5 3z" /></svg>
+                    Spill av
                 </button>
             </div>
         </div>
