@@ -8,8 +8,8 @@ import {Sequencer, Soundfont, SplendidGrandPiano } from "smplr";
 
 
 let currentChords = $state([]);
-let isActive = $state(false);
-let playChords11 = $state(true)
+let isActive = $state(true);
+
 
 const restartSite = () => {
     window.location.reload();
@@ -32,7 +32,7 @@ function generateChords() {
 }
 
 
-
+/*
 function splitChords(progression) {
    progression.forEach((akkord, index) => {
         console.log(`${index} ${akkord}`);
@@ -71,8 +71,6 @@ async function playChords(akkord) {
 
 
 
-
-/*
 function generateMidiFile() {
     console.log("Du trykket på knappen")    
 
@@ -166,7 +164,7 @@ function generateMidiFile() {
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z" /><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z" /></svg>
                     Generer
                 </button>
-                <button class="btn btn_secondary" type="button" disabled={playChords11} onclick={playChords}>
+                <button class="btn btn_secondary" disabled={isActive} type="button" onclick={playChords}>
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3v18l15-9L5 3z" /></svg>
                     Spill av
                 </button>
@@ -491,6 +489,11 @@ function generateMidiFile() {
         font-family: inherit;
         cursor: pointer;
         transition: background 0.12s, border-color 0.12s, color 0.12s, transform 0.08s;
+    }
+
+    .btn:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
     }
 
     .btn svg {
