@@ -4,10 +4,12 @@ import { generateProgressionChords } from '$lib/progression.js'
 import fs from 'fs';
 import MidiWriter from 'midi-writer-js';
 import {Sequencer, Soundfont, SplendidGrandPiano } from "smplr";
+  import { Chord } from 'tonal';
 
 
 let currentChords = $state([]);
 let isActive = $state(false);
+let playChords11 = $state(true)
 
 const restartSite = () => {
     window.location.reload();
@@ -19,22 +21,43 @@ const restartSite = () => {
   let selectedGenre = $state("Pop");
   let selectedKey = $state("C");
   let generatedProgression = $state([]);
+    
 
 
-async function playChords() {
-    console.log("Du trykket på knappen");
+function generateChords() {
+    const romanNumerals = chordsByGenre[selectedGenre][Math.floor(Math.random() * chordsByGenre[selectedGenre].length)];
+
+    generatedProgression = generateProgressionChords(selectedKey, romanNumerals);
+    splitChords(generatedProgression)
+}
+
+
+
+function splitChords(progression) {
+   progression.forEach((akkord, index) => {
+        console.log(`${index} ${akkord}`);
+        playChords(akkord);
+    })
+
+}
+
+
+async function playChords(akkord) {
+
+    console.log("Listen med akkroder", akkord);
     
     const context = new AudioContext();
     const piano = SplendidGrandPiano(context);
 
+
     await piano.load; 
 
     const chords = [
-        ["A3", "C4", "E4"], // 1. A-moll
-        ["F3", "A3", "C4"], // 2. F-dur
-        ["C3", "E3", "G3"], // 3. C-dur
-        ["G3", "B3", "D4"]  // 4. G-dur
+        Chord.get(akkord).notes.map(note => note + "4")
     ]
+    
+    console.log("Dette blir spilt", chords)
+
     chords.forEach((chord, index) => {
         setTimeout(() => {
             chord.forEach(noteName => {
@@ -43,16 +66,11 @@ async function playChords() {
             });
         }, index * 1000);
     });
+ 
 }
 
-    
 
 
-function generateChords() {
-    const romanNumerals = chordsByGenre[selectedGenre][Math.floor(Math.random() * chordsByGenre[selectedGenre].length)];
-
-    generatedProgression = generateProgressionChords(selectedKey, romanNumerals);
-}
 
 /*
 function generateMidiFile() {
@@ -148,7 +166,7 @@ function generateMidiFile() {
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z" /><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z" /></svg>
                     Generer
                 </button>
-                <button class="btn btn_secondary" type="button" onclick={playChords}>
+                <button class="btn btn_secondary" type="button" disabled={playChords11} onclick={playChords}>
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3v18l15-9L5 3z" /></svg>
                     Spill av
                 </button>
