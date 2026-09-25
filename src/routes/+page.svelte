@@ -27,17 +27,25 @@ async function playChords() {
     const context = new AudioContext();
     const piano = SplendidGrandPiano(context);
 
-    const seq = Sequencer(context, {bpm: 110, loop: true});
-    seq.addTrack(piano, [
-        { note: "C4", at: "1:1", duration: "4n" },
-        { note: "E4", at: "1:2", duration: "4n" },
-        { note: "G4", at: "1:3", duration: "4n" },
-    ]);
-    
-    await seq.load; 
-    
-    seq.start();
+    await piano.load; 
+
+    const chords = [
+        ["A3", "C4", "E4"], // 1. A-moll
+        ["F3", "A3", "C4"], // 2. F-dur
+        ["C3", "E3", "G3"], // 3. C-dur
+        ["G3", "B3", "D4"]  // 4. G-dur
+    ]
+    chords.forEach((chord, index) => {
+        setTimeout(() => {
+            chord.forEach(noteName => {
+                // smplr skjønner "C4" like godt som tallet 60!
+                piano.start({ note: noteName, velocity: 70 });
+            });
+        }, index * 1000);
+    });
 }
+
+    
 
 
 function generateChords() {
