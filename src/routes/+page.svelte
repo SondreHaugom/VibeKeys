@@ -1,12 +1,15 @@
 <script>
-import { pitch, Progression } from "tonal"; 
 import { chordsByGenre } from '$lib/chords.js'
+import { generateProgressionChords } from '$lib/progression.js'
 import fs from 'fs';
 import MidiWriter from 'midi-writer-js';
+import {Sequencer, Soundfont, SplendidGrandPiano } from "smplr";
+  import { Chord } from 'tonal';
 
 
 let currentChords = $state([]);
-let isActive = $state(false);
+let isActive = $state(true);
+
 
 const restartSite = () => {
     window.location.reload();
@@ -18,24 +21,56 @@ const restartSite = () => {
   let selectedGenre = $state("Pop");
   let selectedKey = $state("C");
   let generatedProgression = $state([]);
-
+    
 
 
 function generateChords() {
-    //console.log("Generating chords for genre:", selectedGenre, "and key: ", selectedKey);
-    
-    const akkordType = Progression.fromRomanNumerals(
-        selectedKey,
-        chordsByGenre[selectedGenre][Math.floor(Math.random() * chordsByGenre[selectedGenre].length)]
-    );
-    //console.log("Her er alle akkord progresjonene:", akkordType);
+    const romanNumerals = chordsByGenre[selectedGenre][Math.floor(Math.random() * chordsByGenre[selectedGenre].length)];
+
+    generatedProgression = generateProgressionChords(selectedKey, romanNumerals);
+    splitChords(generatedProgression)
+}
 
 
-    generatedProgression = akkordType;
+/*
+function splitChords(progression) {
+   progression.forEach((akkord, index) => {
+        console.log(`${index} ${akkord}`);
+        playChords(akkord);
+    })
 
 }
 
-/*
+
+async function playChords(akkord) {
+
+    console.log("Listen med akkroder", akkord);
+    
+    const context = new AudioContext();
+    const piano = SplendidGrandPiano(context);
+
+
+    await piano.load; 
+
+    const chords = [
+        Chord.get(akkord).notes.map(note => note + "4")
+    ]
+    
+    console.log("Dette blir spilt", chords)
+
+    chords.forEach((chord, index) => {
+        setTimeout(() => {
+            chord.forEach(noteName => {
+                // smplr skjønner "C4" like godt som tallet 60!
+                piano.start({ note: noteName, velocity: 70 });
+            });
+        }, index * 1000);
+    });
+ 
+}
+
+
+
 function generateMidiFile() {
     console.log("Du trykket på knappen")    
 
@@ -128,6 +163,10 @@ function generateMidiFile() {
                 <button class="btn btn_primary" type="button" onclick={generateChords}>
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z" /><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z" /></svg>
                     Generer
+                </button>
+                <button class="btn btn_secondary" disabled={isActive} type="button" onclick={playChords}>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3v18l15-9L5 3z" /></svg>
+                    Spill av
                 </button>
             </div>
         </div>
@@ -450,6 +489,11 @@ function generateMidiFile() {
         font-family: inherit;
         cursor: pointer;
         transition: background 0.12s, border-color 0.12s, color 0.12s, transform 0.08s;
+    }
+
+    .btn:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
     }
 
     .btn svg {
