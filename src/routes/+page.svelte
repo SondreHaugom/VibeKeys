@@ -4,11 +4,11 @@ import { generateProgressionChords } from '$lib/progression.js'
 import fs from 'fs';
 import MidiWriter from 'midi-writer-js';
 import {Sequencer, Soundfont, SplendidGrandPiano } from "smplr";
-  import { Chord } from 'tonal';
+import { Chord } from 'tonal';
 
 
 let currentChords = $state([]);
-let isActive = $state(true);
+let isActive = $state(false);
 
 
 const restartSite = () => {
@@ -28,83 +28,25 @@ function generateChords() {
     const romanNumerals = chordsByGenre[selectedGenre][Math.floor(Math.random() * chordsByGenre[selectedGenre].length)];
 
     generatedProgression = generateProgressionChords(selectedKey, romanNumerals);
-    splitChords(generatedProgression)
 }
 
 
-/*
-function splitChords(progression) {
-   progression.forEach((akkord, index) => {
-        console.log(`${index} ${akkord}`);
-        playChords(akkord);
-    })
+async function playChords() {
 
-}
-
-
-async function playChords(akkord) {
-
-    console.log("Listen med akkroder", akkord);
+    console.log("HEr er genererte akkorder: ", generatedProgression)
     
     const context = new AudioContext();
     const piano = SplendidGrandPiano(context);
 
-
     await piano.load; 
 
-    const chords = [
-        Chord.get(akkord).notes.map(note => note + "4")
-    ]
-    
-    console.log("Dette blir spilt", chords)
+    const notes = generatedProgression.map(akkord => Chord.get(akkord).notes.map(n => n + "4"));
 
-    chords.forEach((chord, index) => {
-        setTimeout(() => {
-            chord.forEach(noteName => {
-                // smplr skjønner "C4" like godt som tallet 60!
-                piano.start({ note: noteName, velocity: 70 });
-            });
-        }, index * 1000);
-    });
- 
+
+    await piano.start({ notes });
 }
 
 
-
-function generateMidiFile() {
-    console.log("Du trykket på knappen")    
-
-    const track = new MidiWriter.Track();
-
-    const progression = [
-        {pitch: [currentChords], duration: '2'},
-
-    ];
-    
-    
-    progression.forEach(chord => {
-        track.addEvent(new MidiWriter.NoteEvent({
-            pitch: chord.pitch,
-            duration: chord.duration
-        }));
-    });
-
-    const writer = new MidiWriter.Writer(track);
-    if (!writer) {
-        console.error("Writer is null or undefined");
-    }
-    const blob = new Blob([writer.buildFile()], { type: 'audio/midi' });
-    const url = URL.createObjectURL(blob);
-
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = 'output.mid';
-    a.click();
-
-    RL.revokeObjectURL(url);
-
-};
-*/
 
 
 </script>
@@ -164,7 +106,7 @@ function generateMidiFile() {
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z" /><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z" /></svg>
                     Generer
                 </button>
-                <button class="btn btn_secondary" disabled={isActive} type="button">
+                <button class="btn btn_secondary" disabled={isActive} type="button" onclick={playChords}>
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3v18l15-9L5 3z" /></svg>
                     Spill av
                 </button>
