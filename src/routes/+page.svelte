@@ -31,14 +31,6 @@ function generateChords() {
 }
 
 
-// funksjon for å spille av akkorder
-// den skal opprette et nytt audio innhold med tonal
-// Spille av lyden som piano gjennom tonal
-// dele akkordene etter noter f.eks. C = C, E, G 
-// Spille av akkordnene etterhverandre
-
-
-
 async function playChords() {
     try {
         const context = new AudioContext();
