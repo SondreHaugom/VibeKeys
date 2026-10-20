@@ -4,7 +4,7 @@ import { generateProgressionChords } from '$lib/progression.js'
 import fs from 'fs';
 import MidiWriter from 'midi-writer-js';
 import {Sequencer, Soundfont, SplendidGrandPiano } from "smplr";
-import { Chord } from 'tonal';
+import { Chord, note } from 'tonal';
 
 
 let currentChords = $state([]);
@@ -31,20 +31,35 @@ function generateChords() {
 }
 
 
+// funksjon for å spille av akkorder
+// den skal opprette et nytt audio innhold med tonal
+// Spille av lyden som piano gjennom tonal
+// dele akkordene etter noter f.eks. C = C, E, G 
+// Spille av akkordnene etterhverandre
+
 async function playChords() {
-
-    console.log("HEr er genererte akkorder: ", generatedProgression)
-    
     const context = new AudioContext();
-    const piano = SplendidGrandPiano(context);
-
-    await piano.load; 
-
-    const notes = generatedProgression.map(akkord => Chord.get(akkord).notes.map(n => n + "4"));
+    const piano = await new SplendidGrandPiano(context, { formats: ["m4a"] }).load;
 
 
-    await piano.start({ notes });
+    const chords = generatedProgression.map(akkord =>
+        Chord.get(akkord).notes.map(n => n + "4")
+    );
+
+    const chordLength = 1; // sekunder per akkord
+    const now = context.currentTime;
+
+    chords.forEach((chordNotes, i) => {
+        chordNotes.forEach(note => {
+            piano.start({
+                note,
+                time: now + i * chordLength,
+                duration: chordLength
+            });
+        });
+    });
 }
+
 
 
 
