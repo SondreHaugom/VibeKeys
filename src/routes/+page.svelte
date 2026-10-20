@@ -37,32 +37,34 @@ function generateChords() {
 // dele akkordene etter noter f.eks. C = C, E, G 
 // Spille av akkordnene etterhverandre
 
+
+
 async function playChords() {
-    const context = new AudioContext();
-    const piano = await new SplendidGrandPiano(context, { formats: ["m4a"] }).load;
+    try {
+        const context = new AudioContext();
+        const piano = await new SplendidGrandPiano(context, { formats: ["m4a"] }).load;
+
+        const chords = generatedProgression.map(akkord =>
+            Chord.get(akkord).notes.map(n => n + "4")
+        );
 
 
-    const chords = generatedProgression.map(akkord =>
-        Chord.get(akkord).notes.map(n => n + "4")
-    );
+        const chordLength = 1; // sekunder per akkord
+        const now = context.currentTime;
 
-    const chordLength = 1; // sekunder per akkord
-    const now = context.currentTime;
-
-    chords.forEach((chordNotes, i) => {
-        chordNotes.forEach(note => {
-            piano.start({
-                note,
-                time: now + i * chordLength,
-                duration: chordLength
+        chords.forEach((chordNotes, i) => {
+            chordNotes.forEach(note => {
+                piano.start({
+                    note,
+                    time: now + i * chordLength,
+                    duration: chordLength
+                });
             });
         });
-    });
+    } catch (error) {
+        console.error("Feil ved spilling av akkorder")
+    }
 }
-
-
-
-
 
 </script>
 
