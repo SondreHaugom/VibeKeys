@@ -5,10 +5,15 @@ import fs from 'fs';
 import MidiWriter from 'midi-writer-js';
 import {Sequencer, Soundfont, SplendidGrandPiano } from "smplr";
 import { Chord, note } from 'tonal';
+import { signIn, signOut } from "@auth/sveltekit/client"
 
+import { page } from "$app/stores"
+
+let { data } = $props();
 
 let currentChords = $state([]);
 let isActive = $state(false);
+
 
 
 const restartSite = () => {
@@ -59,6 +64,20 @@ async function playChords() {
 }
 
 </script>
+
+{#if data.session?.user}
+  <div>
+    <p>Velkommen tilbake, {data.session.user.name}!</p>
+    <button onclick={() => signOut()}>Logg ut</button>
+  </div>
+{:else}
+  <div>
+    <p>Du er ikke logget inn.</p>
+    <!-- Siden signIn() er tom, sendes du til den ferdige siden på bildet ditt -->
+    <button onclick={() => signIn()}>Gå til innlogging</button>
+  </div>
+{/if}
+
 
 <div class="app">
     <aside class="sidebar">
