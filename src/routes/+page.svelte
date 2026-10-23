@@ -10,7 +10,6 @@ import { signIn, signOut } from "@auth/sveltekit/client"
 import { page } from "$app/stores"
 
 let { data } = $props();
-
 let currentChords = $state([]);
 let isActive = $state(false);
 
@@ -65,20 +64,25 @@ async function playChords() {
 
 </script>
 
+<div class="innloging">
+    {#if data.session?.user}
+    <div>
+        <p>Velkommen, {data.session.user.name}!</p>
+        <button onclick={() => signOut()}>Logg ut</button>
+    </div>
+    {:else}
+    <div>
+        <p>Du er ikke logget inn.</p>
+        <!-- Siden signIn() er tom, sendes du til den ferdige siden på bildet ditt -->
+        <button onclick={() => signIn()}>Gå til innlogging</button>
+    </div>
+    {/if}
+</div>
+
+
+
+
 {#if data.session?.user}
-  <div>
-    <p>Velkommen tilbake, {data.session.user.name}!</p>
-    <button onclick={() => signOut()}>Logg ut</button>
-  </div>
-{:else}
-  <div>
-    <p>Du er ikke logget inn.</p>
-    <!-- Siden signIn() er tom, sendes du til den ferdige siden på bildet ditt -->
-    <button onclick={() => signIn()}>Gå til innlogging</button>
-  </div>
-{/if}
-
-
 <div class="app">
     <aside class="sidebar">
         <div class="brand">
@@ -186,6 +190,7 @@ async function playChords() {
         </section>
     </main>
 </div>
+{/if}
 
 <style>
     :global(*, *::before, *::after) {
@@ -735,6 +740,140 @@ async function playChords() {
         line-height: 1;
         letter-spacing: -0.03em;
         color: var(--text);
+    }
+
+    /* ---------- Innlogging ---------- */
+
+    /* Ikke logget inn: kort midt på siden */
+    .innloging {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 1.5rem;
+        background: radial-gradient(circle at 50% 35%, var(--accent-soft), transparent 60%), var(--bg);
+    }
+
+    .innloging > div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.25rem;
+        width: 100%;
+        max-width: 360px;
+        padding: 2.5rem 2rem;
+        text-align: center;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    }
+
+    .innloging p {
+        margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: var(--text-soft);
+    }
+
+    .innloging button {
+        width: 100%;
+        padding: 0.85rem 1rem;
+        border-radius: 10px;
+        font-family: inherit;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #ffffff;
+        background: var(--accent);
+        border: 1px solid var(--accent);
+        box-shadow: 0 4px 14px rgba(161, 58, 28, 0.35);
+        cursor: pointer;
+        transition: background 0.12s, border-color 0.12s, color 0.12s, transform 0.08s;
+    }
+
+    .innloging button:hover {
+        background: var(--accent-hover);
+        border-color: var(--accent-hover);
+    }
+
+    .innloging button:active {
+        background: var(--accent-active);
+        transform: translateY(1px);
+    }
+
+    .innloging button:focus-visible {
+        outline: none;
+        box-shadow: var(--focus);
+    }
+
+    /* Logget inn: liten pille øverst til høyre over arbeidsflaten */
+    .innloging:has(+ .app) {
+        position: fixed;
+        top: 1rem;
+        right: 2.5rem;
+        z-index: 10;
+        min-height: 0;
+        display: block;
+        padding: 0;
+        background: none;
+    }
+
+    .innloging:has(+ .app) > div {
+        flex-direction: row;
+        gap: 0.75rem;
+        width: auto;
+        max-width: none;
+        padding: 0.4rem 0.4rem 0.4rem 1rem;
+        border-radius: 999px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .innloging:has(+ .app) p {
+        font-size: 0.85rem;
+        white-space: nowrap;
+    }
+
+    .innloging:has(+ .app) button {
+        width: auto;
+        padding: 0.45rem 0.95rem;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        color: var(--text-soft);
+        background: transparent;
+        border-color: var(--border-strong);
+        box-shadow: none;
+    }
+
+    .innloging:has(+ .app) button:hover {
+        color: var(--text);
+        background: #34302b;
+    }
+
+    /* Plass til pillen så den ikke ligger oppå overskriften */
+    .workspace {
+        padding-top: 4.5rem;
+    }
+
+    @media (max-width: 860px) {
+        .innloging:has(+ .app) {
+            position: static;
+            padding: 0.75rem 1rem;
+            background: var(--sidebar-bg);
+            border-bottom: 1px solid var(--sidebar-border);
+        }
+
+        .innloging:has(+ .app) > div {
+            justify-content: space-between;
+            padding: 0;
+            background: none;
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .innloging:has(+ .app) p {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
     }
 
     /* ---------- Responsivt ---------- */
